@@ -1,0 +1,27 @@
+name: 'Manage AWS EKS Endpoint Access'
+description: 'A GitHub Action to manage AWS EKS endpoint access using TypeScript and Node.js'
+inputs:
+  aws_access_key_id:
+    description: 'AWS Access Key ID'
+    required: true
+  aws_secret_access_key:
+    description: 'AWS Secret Access Key'
+    required: true
+  region:
+    description: 'AWS Region'
+    required: true
+  cluster_name:
+    description: 'EKS Cluster Name'
+    required: true
+  public_access:
+    description: 'Set public access to true or false'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.aws_access_key_id }}
+    - ${{ inputs.aws_secret_access_key }}
+    - ${{ inputs.region }}
+    - ${{ inputs.cluster_name }}
+    - ${{ inputs.public_access }}
